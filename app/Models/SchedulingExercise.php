@@ -13,7 +13,6 @@ class SchedulingExercise extends Model
 
     protected $fillable = [
         'name',
-        'repetitions',
         'start_time',
         'end_time',
         'user_id',

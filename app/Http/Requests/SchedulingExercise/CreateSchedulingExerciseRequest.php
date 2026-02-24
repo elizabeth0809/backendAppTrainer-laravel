@@ -26,7 +26,6 @@ class CreateSchedulingExerciseRequest extends FormRequest
      {
         return [
             'name' => 'required|string|max:255',
-            'repetitions' => 'required|int|min:0',
             'start_time' => [
             'required',
             'date_format:H:i',
@@ -54,12 +53,6 @@ class CreateSchedulingExerciseRequest extends FormRequest
         'name.required' => 'El nombre es obligatorio.',
         'name.string' => 'El nombre debe ser un texto válido.',
         'name.max' => 'El nombre no debe superar los 255 caracteres.',
-
-        // repetitions
-        'repetitions.required' => 'Las repeticiones son obligatorias.',
-        'repetitions.integer' => 'Las repeticiones deben ser un número entero.',
-        'repetitions.min' => 'Las repeticiones no pueden ser negativas.',
-
         // start_time
         'start_time.required' => 'La hora de inicio es obligatoria.',
         'start_time.date_format' => 'La hora de inicio debe tener el formato HH:MM.',

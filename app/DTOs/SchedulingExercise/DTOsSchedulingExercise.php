@@ -10,7 +10,6 @@ class DTOsSchedulingExercise
 {
     public function __construct(
         private readonly ?string $name = null,
-        private readonly ?int $repetitions = null,
         private readonly ?string $start_time = null,
         private readonly ?string $end_time = null,
         private readonly ?int $user_id,
@@ -25,7 +24,6 @@ class DTOsSchedulingExercise
 
         return new self(
             name: $validated['name'],
-            repetitions: $validated['repetitions'],
             start_time: $validated['start_time'],
             end_time: $validated['end_time'],
             user_id: Auth::id(),
@@ -41,7 +39,6 @@ class DTOsSchedulingExercise
 
          return new self(
             name: $validated['name'] ?? null,
-            repetitions: $validated['repetitions'] ?? null,
             start_time: $validated['start_time'],
             end_time: $validated['end_time'],
              user_id: Auth::id(),
@@ -55,7 +52,6 @@ class DTOsSchedulingExercise
     {
         return [
             'name' => $this->name,
-            'repetitions' => $this->repetitions,
             'start_time' => $this->start_time,
             'end_time' => $this->end_time,
             'user_id' => $this->user_id,
@@ -71,10 +67,6 @@ public function getUserId(): int
     public function getName(): ?string
     {
         return $this->name;
-    }
-    public function getRepetitions(): ?int
-    {
-        return $this->repetitions;
     }
     public function getStartTime(): ?string
     {

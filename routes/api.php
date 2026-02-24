@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 //user
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::get('/user', [UserController::class, 'index']);
 //exercise
 Route::post('/exercise', [ExerciseController::class, 'store']);
 Route::get('/exercise', [ExerciseController::class, 'index']);       // listar

@@ -8,30 +8,34 @@ use App\Http\Requests\SchedulingExercise\CreateSchedulingExerciseRequest;
 use App\Http\Requests\SchedulingExercise\UpdateSchedulingExerciseRequest;
 use App\Interfaces\SchedulingExercise\ISchedulingExerciseServices;
 use Illuminate\Http\Request;
+use App\Http\Resources\SchedulingExerciseResource;
 
-class SchedulingExerciseController extends Controller 
+class SchedulingExerciseController extends Controller
 {
     protected ISchedulingExerciseServices $SchedulingExerciseServices;
-    
+
     public function __construct(ISchedulingExerciseServices $SchedulingExerciseServicesInterface)
     {
         $this->SchedulingExerciseServices = $SchedulingExerciseServicesInterface;
     }
-    
+
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $result = $this->SchedulingExerciseServices->getAllSchedulingExercises();
-        if (!$result['success']) {
-            return response()->json([
-                'error' => $result['message']
-            ], 422);
-        }
-        return response()->json($result['data'], 200);
+{
+    $result = $this->SchedulingExerciseServices->getAllSchedulingExercises();
+
+    if (!$result['success']) {
+        return response()->json([
+            'error' => $result['message']
+        ], 422);
     }
-    
+
+    return SchedulingExerciseResource::collection($result['data']);
+}
+
+
     /**
      * Store a newly created resource in storage.
      */
@@ -43,9 +47,12 @@ class SchedulingExerciseController extends Controller
                 'error' => $result['message']
             ], 422);
         }
-        return response()->json($result['data'], 201);
+        return (new SchedulingExerciseResource($result['data']))
+            ->response()
+            ->setStatusCode(201);
+
     }
-    
+
     /**
      * Display the specified resource.
      */
@@ -57,9 +64,10 @@ class SchedulingExerciseController extends Controller
                 'error' => $result['message']
             ], 422);
         }
-        return response()->json($result['data'], 200);
+       return new SchedulingExerciseResource($result['data']);
+
     }
-    
+
     /**
      * Update the specified resource in storage.
      */
@@ -71,9 +79,12 @@ class SchedulingExerciseController extends Controller
                 'error' => $result['message']
             ], 422);
         }
-        return response()->json($result['data'], 200);
+        return (new SchedulingExerciseResource($result['data']))
+            ->response()
+            ->setStatusCode(201);
+
     }
-    
+
     /**
      * Remove the specified resource from storage.
      */
