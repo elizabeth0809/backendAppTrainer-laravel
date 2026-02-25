@@ -6,6 +6,8 @@ use App\Interfaces\Auth\IAuthRepository;
 use App\Interfaces\Auth\IAuthServices;
 use App\Interfaces\Exercise\IExerciseRepository;
 use App\Interfaces\Exercise\IExerciseServices;
+use App\Interfaces\ObjetiveExercise\IObjetiveExerciseRepository;
+use App\Interfaces\ObjetiveExercise\IObjetiveExerciseServices;
 use App\Interfaces\OpeningSchedule\IOpeningScheduleRepository;
 use App\Interfaces\OpeningSchedule\IOpeningScheduleServices;
 use App\Interfaces\SchedulingExercise\ISchedulingExerciseRepository;
@@ -18,6 +20,7 @@ use App\Interfaces\UserMeasurement\IUserMeasurementRepository;
 use App\Interfaces\UserMeasurement\IUserMeasurementServices;
 use App\Repository\Auth\AuthRepository;
 use App\Repository\Exercise\ExerciseRepository;
+use App\Repository\ObjetiveExercise\ObjetiveExerciseRepository;
 use App\Repository\OpeningSchedule\OpeningScheduleRepository;
 use App\Repository\SchedulingExercise\SchedulingExerciseRepository;
 use App\Repository\Subscription\SubscriptionRepository;
@@ -25,6 +28,7 @@ use App\Repository\User\UserRepository;
 use App\Repository\UserMeasurement\UserMeasurementRepository;
 use App\Services\Auth\AuthServices;
 use App\Services\Exercise\ExerciseServices;
+use App\Services\ObjetiveExercise\ObjetiveExerciseServices;
 use App\Services\OpeningSchedule\OpeningScheduleServices;
 use App\Services\SchedulingExercise\SchedulingExerciseServices;
 use App\Services\Subscription\SubscriptionServices;
@@ -39,6 +43,8 @@ class RepositoriesServicesProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->bind(IObjetiveExerciseRepository::class, ObjetiveExerciseRepository::class);
+        $this->app->bind(IObjetiveExerciseServices::class, ObjetiveExerciseServices::class);
         $this->app->bind(IUserRepository::class, UserRepository::class);
         $this->app->bind(IUserServices::class, UserServices::class);
         $this->app->bind(ISchedulingExerciseRepository::class, SchedulingExerciseRepository::class);

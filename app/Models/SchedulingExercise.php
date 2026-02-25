@@ -13,17 +13,16 @@ class SchedulingExercise extends Model
 
     protected $fillable = [
         'name',
-        'start_time',
-        'end_time',
         'user_id',
-        'exercise_id',
+        'scheduled_date',
+        'objetive_exercise_id',
         'user_measurement_id',
         'opening_schedule_id',
     ];
 
-    public function exercise()
+    public function objetiveExercise()
     {
-        return $this->belongsTo(Exercise::class);
+        return $this->belongsTo(ObjetiveExercise::class);
     }
 
     public function userMeasurement()

@@ -14,14 +14,17 @@ return new class extends Migration
           Schema::create('schedules_exercises', function (Blueprint $table) {
         $table->id();
         $table->string('name');
-       $table->time('start_time');
-        $table->time('end_time');
+        $table->date('scheduled_date');
         $table->timestamps();
         $table->foreignId('user_id')
           ->constrained('users')
           ->cascadeOnDelete();
-         $table->foreignId('exercise_id')
+        /* $table->foreignId('exercise_id')
               ->constrained('exercises')
+              ->cascadeOnDelete();
+        */
+        $table->foreignId('objetive_exercise_id')
+              ->constrained('objetive_exercises')
               ->cascadeOnDelete();
 
         $table->foreignId('user_measurement_id')

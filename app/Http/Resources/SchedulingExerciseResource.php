@@ -12,10 +12,8 @@ class SchedulingExerciseResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'start_time' => $this->start_time,
-            'end_time' => $this->end_time,
-
-            'exercise' => new ExerciseResource($this->whenLoaded('exercise')),
+            'scheduled_date' => $this->scheduled_date,
+            'objetive_exercise' => new ObjetiveExercise($this->whenLoaded('objetiveExercise')),
             'user_measurement' => new UserMeasurementResource($this->whenLoaded('userMeasurement')),
             'opening_schedule' => new OpeningScheduleResource($this->whenLoaded('openingSchedule')),
             'user' => new UserResource($this->whenLoaded('user')),

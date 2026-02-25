@@ -25,19 +25,10 @@ class CreateSchedulingExerciseRequest extends FormRequest
     public function rules(): array
      {
         return [
-            'name' => 'required|string|max:255',
-            'start_time' => [
-            'required',
-            'date_format:H:i',
-            'before:endtime',
-        ],
-        'end_time' => [
-            'required',
-            'date_format:H:i',
-            'after:start_time',
-        ],
+        'name' => 'required|string|max:255',
         'user_id' => 'integer|exists:users,id',
-        'exercise_id' => 'required|int|exists:exercises,id',
+        'scheduled_date' => 'required|date',
+        'objetive_exercise_id' => 'required|int|exists:objetive_exercises,id',
         'user_measurement_id' => 'required|int|exists:user_measurements,id',
         'opening_schedule_id' => 'required|int|exists:opening_schedules,id',
         ];
@@ -53,20 +44,12 @@ class CreateSchedulingExerciseRequest extends FormRequest
         'name.required' => 'El nombre es obligatorio.',
         'name.string' => 'El nombre debe ser un texto válido.',
         'name.max' => 'El nombre no debe superar los 255 caracteres.',
-        // start_time
-        'start_time.required' => 'La hora de inicio es obligatoria.',
-        'start_time.date_format' => 'La hora de inicio debe tener el formato HH:MM.',
-        'start_time.before' => 'La hora de inicio debe ser menor que la hora de fin.',
-
-        // endtime
-        'end_time.required' => 'La hora de fin es obligatoria.',
-        'end_time.date_format' => 'La hora de fin debe tener el formato HH:MM.',
-        'end_time.after' => 'La hora de fin debe ser mayor que la hora de inicio.',
-
+        //scheduled_date
+        'scheduled_date.required' => 'La fecha es obligatorio.',
         // exercise_id
-        'exercise_id.required' => 'El ejercicio es obligatorio.',
-        'exercise_id.integer' => 'El ejercicio seleccionado no es válido.',
-        'exercise_id.exists'   => 'El ejercico seleccionado no existe.',
+        'objetive_exercise.required' => 'El objetivo es obligatorio.',
+        'objetive_exercise.integer' => 'El objetivo seleccionado no es válido.',
+        'objetive_exercise.exists'   => 'El objetivo seleccionado no existe.',
 
         // user_measurement_id
         'user_measurement_id.required' => 'Las mediciones del usuario son obligatorias.',
