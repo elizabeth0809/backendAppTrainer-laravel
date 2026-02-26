@@ -11,7 +11,7 @@ class SchedulingExerciseRepository implements ISchedulingExerciseRepository
     public function getAllSchedulingExercises()
     {
         return SchedulingExercise::with([
-            'exercise',
+            'objetiveExercise',
             'userMeasurement',
             'openingSchedule',
             'user'

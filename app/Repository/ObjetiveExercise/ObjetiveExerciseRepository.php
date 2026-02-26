@@ -6,14 +6,15 @@ use App\DTOs\ObjetiveExercise\DTOsObjetiveExercise;
 use App\Interfaces\ObjetiveExercise\IObjetiveExerciseRepository;
 use App\Models\ObjetiveExercise;
 
-class ObjetiveExerciseRepository implements IObjetiveExerciseRepository 
+class ObjetiveExerciseRepository implements IObjetiveExerciseRepository
 {
     public function getAllObjetiveExercises()
     {
-        $ObjetiveExercises = ObjetiveExercise::all();
-        return $ObjetiveExercises;
+        return ObjetiveExercise::with([
+            'exercise',
+        ])->get();
     }
-    
+
     public function getObjetiveExerciseById($id): ObjetiveExercise
     {
         $ObjetiveExercise = ObjetiveExercise::where('id', $id)->first();
@@ -22,19 +23,19 @@ class ObjetiveExerciseRepository implements IObjetiveExerciseRepository
         }
         return $ObjetiveExercise;
     }
-    
+
     public function createObjetiveExercise(DTOsObjetiveExercise $data): ObjetiveExercise
     {
         $result = ObjetiveExercise::create($data->toArray());
         return $result;
     }
-    
+
     public function updateObjetiveExercise(DTOsObjetiveExercise $data, ObjetiveExercise $ObjetiveExercise): ObjetiveExercise
     {
         $ObjetiveExercise->update($data->toArray());
         return $ObjetiveExercise;
     }
-    
+
     public function deleteObjetiveExercise(ObjetiveExercise $ObjetiveExercise): ObjetiveExercise
     {
         $ObjetiveExercise->delete();

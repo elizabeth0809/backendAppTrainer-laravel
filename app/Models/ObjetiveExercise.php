@@ -10,5 +10,10 @@ class ObjetiveExercise extends Model
     protected $table = 'objetive_exercises';
     protected $fillable = [
         'name',
+        'exercise_id',
     ];
+    public function exercise()
+    {
+        return $this->belongsTo(Exercise::class);
+    }
 }

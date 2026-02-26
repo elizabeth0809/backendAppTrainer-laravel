@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\Api\Exercise\ExerciseController;
+use App\Http\Controllers\Api\ObjetiveExercise\ObjetiveExerciseController;
 use App\Http\Controllers\Api\OpeningSchedule\OpeningScheduleController;
 use App\Http\Controllers\Api\SchedulingExercise\SchedulingExerciseController;
 use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Api\UserMeasurement\UserMeasurementController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\ObjetiveExercise\ObjetiveExerciseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

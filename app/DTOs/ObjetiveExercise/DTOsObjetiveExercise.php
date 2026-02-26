@@ -10,6 +10,7 @@ class DTOsObjetiveExercise
 {
     public function __construct(
         private readonly ?string $name = null,
+         private readonly ?int $exercise_id = null,
     ) {}
 
     public static function fromRequest(CreateObjetiveExerciseRequest $request): self
@@ -18,6 +19,7 @@ class DTOsObjetiveExercise
 
         return new self(
             name: $validated['name'],
+            exercise_id: $validated['exercise_id'],
         );
     }
 
@@ -27,18 +29,24 @@ class DTOsObjetiveExercise
 
         return new self(
             name: $validated['name'] ?? null,
+            exercise_id: $validated['exercise_id'],
         );
     }
 
     public function toArray(): array
     {
         return [
-           'name' => $this->name,
+        'name' => $this->name,
+        'exercise_id' => $this->exercise_id,
         ];
     }
     public function getName(): ?string
     {
         return $this->name;
+    }
+    public function getExerciseId(): ?int
+    {
+        return $this->exercise_id;
     }
     // Add getter methods for each property
     // public function getProperty1(): string

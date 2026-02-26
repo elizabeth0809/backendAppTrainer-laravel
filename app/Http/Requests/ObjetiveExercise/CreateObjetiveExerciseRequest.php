@@ -26,6 +26,7 @@ class CreateObjetiveExerciseRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:250',
+            'exercise_id' => 'required|int|exists:exercises,id',
         ];
     }
 
@@ -46,6 +47,10 @@ public function messages(): array
     {
         return [
             'name.required' => 'El nombre del evento es obligatorio',
+             // exercise_id
+            'exercise.required' => 'El ejercico es obligatorio.',
+            'exercise.integer' => 'El ejercico seleccionado no es válido.',
+            'exercise.exists'   => 'El ejercico seleccionado no existe.',
         ];
     }
     /**

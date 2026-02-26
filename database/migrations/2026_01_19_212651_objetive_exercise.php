@@ -12,6 +12,10 @@ return new class extends Migration
         $table->id();
         $table->string('name');
         $table->timestamps();
+        $table->foreignId('exercise_id')
+              ->constrained('exercises')
+              ->cascadeOnDelete();
+
    });
     }
 

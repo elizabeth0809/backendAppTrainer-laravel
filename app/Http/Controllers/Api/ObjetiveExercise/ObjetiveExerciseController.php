@@ -1,23 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\ObjetiveExercise;
+namespace App\Http\Controllers\Api\ObjetiveExercise;
 
 use App\DTOs\ObjetiveExercise\DTOsObjetiveExercise;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ObjetiveExercise\CreateObjetiveExerciseRequest;
 use App\Http\Requests\ObjetiveExercise\UpdateObjetiveExerciseRequest;
 use App\Interfaces\ObjetiveExercise\IObjetiveExerciseServices;
+use App\Http\Resources\ObjetiveExerciseResource;
 use Illuminate\Http\Request;
 
-class ObjetiveExerciseController extends Controller 
+class ObjetiveExerciseController extends Controller
 {
     protected IObjetiveExerciseServices $ObjetiveExerciseServices;
-    
+
     public function __construct(IObjetiveExerciseServices $ObjetiveExerciseServicesInterface)
     {
         $this->ObjetiveExerciseServices = $ObjetiveExerciseServicesInterface;
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -29,9 +30,9 @@ class ObjetiveExerciseController extends Controller
                 'error' => $result['message']
             ], 422);
         }
-        return response()->json($result['data'], 200);
+        return ObjetiveExerciseResource::collection($result['data']);
     }
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -43,9 +44,11 @@ class ObjetiveExerciseController extends Controller
                 'error' => $result['message']
             ], 422);
         }
-        return response()->json($result['data'], 201);
+         return (new ObjetiveExerciseResource($result['data']))
+            ->response()
+            ->setStatusCode(201);
     }
-    
+
     /**
      * Display the specified resource.
      */
@@ -57,9 +60,9 @@ class ObjetiveExerciseController extends Controller
                 'error' => $result['message']
             ], 422);
         }
-        return response()->json($result['data'], 200);
+         return new ObjetiveExerciseResource($result['data']);
     }
-    
+
     /**
      * Update the specified resource in storage.
      */
@@ -71,9 +74,11 @@ class ObjetiveExerciseController extends Controller
                 'error' => $result['message']
             ], 422);
         }
-        return response()->json($result['data'], 200);
+        return (new ObjetiveExerciseResource($result['data']))
+            ->response()
+            ->setStatusCode(201);
     }
-    
+
     /**
      * Remove the specified resource from storage.
      */
