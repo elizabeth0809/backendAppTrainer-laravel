@@ -10,10 +10,9 @@ class ObjetiveExercise extends Model
     protected $table = 'objetive_exercises';
     protected $fillable = [
         'name',
-        'exercise_id',
     ];
-    public function exercise()
+    public function exercises()
     {
-        return $this->belongsTo(Exercise::class);
+        return $this->hasMany(Exercise::class, 'objetive_exercise_id');
     }
 }

@@ -10,8 +10,9 @@ class ExerciseRepository implements IExerciseRepository
 {
     public function getAllExercises()
     {
-        $Exercises = Exercise::all();
-        return $Exercises;
+        return Exercise::with([
+            'objetive_exercise',
+        ])->get();
     }
 
     public function getExerciseById($id): Exercise

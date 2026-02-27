@@ -9,30 +9,16 @@ use Illuminate\Support\Facades\Auth;
 
 class CreateObjetiveExerciseRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
-        return Auth::check(); // Modify this according to your authorization logic
+        return Auth::check();
     }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
             'name' => 'required|string|max:250',
-            'exercise_id' => 'required|int|exists:exercises,id',
         ];
     }
-
-    /**
-     * Handle a failed validation attempt.
-     */
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json(
@@ -47,10 +33,6 @@ public function messages(): array
     {
         return [
             'name.required' => 'El nombre del evento es obligatorio',
-             // exercise_id
-            'exercise.required' => 'El ejercico es obligatorio.',
-            'exercise.integer' => 'El ejercico seleccionado no es válido.',
-            'exercise.exists'   => 'El ejercico seleccionado no existe.',
         ];
     }
     /**

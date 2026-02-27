@@ -7,12 +7,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ObjetiveExerciseResource extends JsonResource
 {
-      public function toArray($request)
+    public function toArray($request)
     {
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'exercise' => new ExerciseResource($this->whenLoaded('exercise')),
+            'exercises' => ExerciseResource::collection(
+                $this->whenLoaded('exercises')
+            ),
         ];
     }
 }

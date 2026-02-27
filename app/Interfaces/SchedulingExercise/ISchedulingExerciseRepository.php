@@ -5,7 +5,7 @@ namespace App\Interfaces\SchedulingExercise;
 use App\DTOs\SchedulingExercise\DTOsSchedulingExercise;
 use App\Models\SchedulingExercise;
 
-interface ISchedulingExerciseRepository 
+interface ISchedulingExerciseRepository
 {
     public function getAllSchedulingExercises();
     public function getSchedulingExerciseById($id): SchedulingExercise;

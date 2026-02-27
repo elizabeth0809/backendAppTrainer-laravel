@@ -6,26 +6,24 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-          Schema::create('exercises', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');
-        $table->integer('price');
-        $table->string('img');
-        $table->enum('modalities', ['person','hybrid', 'online'])->default('person');
-        $table->timestamps();
-   });
+        Schema::create('exercises', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->integer('price');
+            $table->string('img');
+            $table->enum('modalities', ['person','hybrid','online'])->default('person');
+            $table->foreignId('objetive_exercise_id')
+                  ->constrained('objetive_exercises')
+                  ->cascadeOnDelete();
+
+            $table->timestamps();
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-       Schema::dropIfExists('exercises');
+        Schema::dropIfExists('exercises');
     }
 };
