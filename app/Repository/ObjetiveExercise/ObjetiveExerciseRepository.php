@@ -9,9 +9,10 @@ use App\Models\ObjetiveExercise;
 class ObjetiveExerciseRepository implements IObjetiveExerciseRepository
 {
     public function getAllObjetiveExercises()
-{
-    return ObjetiveExercise::with('exercise')->get();
-}
+ {
+       $ObjetiveExercise = ObjetiveExercise::all();
+        return$ObjetiveExercise;
+    }
 
     public function getObjetiveExerciseById($id): ObjetiveExercise
     {

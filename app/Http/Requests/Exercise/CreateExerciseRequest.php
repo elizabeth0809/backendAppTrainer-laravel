@@ -20,7 +20,6 @@ class CreateExerciseRequest extends FormRequest
             'price' => 'required|int|min:0',
             'modalities' => 'required|in:person,hybrid,online',
             'img' => 'required|string|max:248',
-            'objetive_exercise_id' => 'required|integer|exists:objetive_exercises,id',
         ];
     }
 
@@ -34,10 +33,6 @@ class CreateExerciseRequest extends FormRequest
             'img.image' => 'El archivo debe ser una imagen válida',
             'img.mimes' => 'La imagen debe ser de tipo: jpeg, png, jpg, gif o webp',
             'img.max' => 'La imagen no debe superar los 2MB',
-            // objetive_exercise_id
-            'objetive_exercise.required' => 'El ejercico es obligatorio.',
-            'objetive_exercise.integer' => 'El ejercico seleccionado no es válido.',
-            'objetive_exercise.exists'   => 'El ejercico seleccionado no existe.',
         ];
     }
     public function failedValidation(Validator $validator)

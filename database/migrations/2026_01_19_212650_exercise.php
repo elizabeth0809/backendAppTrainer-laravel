@@ -14,10 +14,6 @@ return new class extends Migration
             $table->integer('price');
             $table->string('img');
             $table->enum('modalities', ['person','hybrid','online'])->default('person');
-            $table->foreignId('objetive_exercise_id')
-                  ->constrained('objetive_exercises')
-                  ->cascadeOnDelete();
-
             $table->timestamps();
         });
     }

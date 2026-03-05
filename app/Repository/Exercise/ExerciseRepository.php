@@ -11,7 +11,7 @@ class ExerciseRepository implements IExerciseRepository
     public function getAllExercises()
     {
         return Exercise::with([
-            'objetive_exercise',
+            'objetiveExercise',
         ])->get();
     }
 

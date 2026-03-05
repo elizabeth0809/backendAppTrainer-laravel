@@ -14,7 +14,6 @@ class Exercise extends Model
         'price',
         'img',
         'modalities',
-        'objetive_exercise_id',
     ];
 
     public function inPerson()
@@ -30,8 +29,11 @@ class Exercise extends Model
     {
         return $this->modalities === 'online';
     }
-    public function objetiveExercise()
-    {
-        return $this->belongsTo(ObjetiveExercise::class, 'objetive_exercise_id');
-    }
+    public function objetiveExercises()
+{
+    return $this->belongsToMany(
+        ObjetiveExercise::class,
+        'exercise_objetive_exercises'
+    )->using(ExerciseObjetiveExercise::class);
+}
 }

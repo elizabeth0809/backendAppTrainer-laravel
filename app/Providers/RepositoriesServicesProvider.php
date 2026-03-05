@@ -6,6 +6,8 @@ use App\Interfaces\Auth\IAuthRepository;
 use App\Interfaces\Auth\IAuthServices;
 use App\Interfaces\Exercise\IExerciseRepository;
 use App\Interfaces\Exercise\IExerciseServices;
+use App\Interfaces\ExerciseObjetiveExercise\IExerciseObjetiveExerciseRepository;
+use App\Interfaces\ExerciseObjetiveExercise\IExerciseObjetiveExerciseService;
 use App\Interfaces\ObjetiveExercise\IObjetiveExerciseRepository;
 use App\Interfaces\ObjetiveExercise\IObjetiveExerciseServices;
 use App\Interfaces\OpeningSchedule\IOpeningScheduleRepository;
@@ -20,6 +22,7 @@ use App\Interfaces\UserMeasurement\IUserMeasurementRepository;
 use App\Interfaces\UserMeasurement\IUserMeasurementServices;
 use App\Repository\Auth\AuthRepository;
 use App\Repository\Exercise\ExerciseRepository;
+use App\Repository\ExerciseObjetiveExercise\ExerciseObjetiveExerciseRepository;
 use App\Repository\ObjetiveExercise\ObjetiveExerciseRepository;
 use App\Repository\OpeningSchedule\OpeningScheduleRepository;
 use App\Repository\SchedulingExercise\SchedulingExerciseRepository;
@@ -28,6 +31,7 @@ use App\Repository\User\UserRepository;
 use App\Repository\UserMeasurement\UserMeasurementRepository;
 use App\Services\Auth\AuthServices;
 use App\Services\Exercise\ExerciseServices;
+use App\Services\ExerciseObjetiveExercise\ExerciseObjetiveExerciseServices;
 use App\Services\ObjetiveExercise\ObjetiveExerciseServices;
 use App\Services\OpeningSchedule\OpeningScheduleServices;
 use App\Services\SchedulingExercise\SchedulingExerciseServices;
@@ -43,6 +47,8 @@ class RepositoriesServicesProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->bind(IExerciseObjetiveExerciseRepository::class, ExerciseObjetiveExerciseRepository::class);
+        $this->app->bind(IExerciseObjetiveExerciseService::class, ExerciseObjetiveExerciseServices::class);
         $this->app->bind(IObjetiveExerciseRepository::class, ObjetiveExerciseRepository::class);
         $this->app->bind(IObjetiveExerciseServices::class, ObjetiveExerciseServices::class);
         $this->app->bind(IUserRepository::class, UserRepository::class);

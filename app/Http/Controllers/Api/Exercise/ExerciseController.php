@@ -6,18 +6,19 @@ use App\DTOs\Exercise\DTOsExercise;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Exercise\CreateExerciseRequest;
 use App\Http\Requests\Exercise\UpdateExerciseRequest;
+use App\Http\Resources\ExerciseResource;
 use App\Interfaces\Exercise\IExerciseServices;
 use Illuminate\Http\Request;
 
-class ExerciseController extends Controller 
+class ExerciseController extends Controller
 {
     protected IExerciseServices $ExerciseServices;
-    
+
     public function __construct(IExerciseServices $ExerciseServicesInterface)
     {
         $this->ExerciseServices = $ExerciseServicesInterface;
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -29,9 +30,9 @@ class ExerciseController extends Controller
                 'error' => $result['message']
             ], 422);
         }
-        return response()->json($result['data'], 200);
+        return ExerciseResource::collection($result['data']);
     }
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -43,9 +44,11 @@ class ExerciseController extends Controller
                 'error' => $result['message']
             ], 422);
         }
-        return response()->json($result['data'], 201);
+        return (new ExerciseResource($result['data']))
+            ->response()
+            ->setStatusCode(201);
     }
-    
+
     /**
      * Display the specified resource.
      */
@@ -57,9 +60,9 @@ class ExerciseController extends Controller
                 'error' => $result['message']
             ], 422);
         }
-        return response()->json($result['data'], 200);
+         return ExerciseResource::collection($result['data']);
     }
-    
+
     /**
      * Update the specified resource in storage.
      */
@@ -73,7 +76,7 @@ class ExerciseController extends Controller
         }
         return response()->json($result['data'], 200);
     }
-    
+
     /**
      * Remove the specified resource from storage.
      */

@@ -15,7 +15,6 @@ class ExerciseResource extends JsonResource
             'price' => $this->price,
             'img' => $this->img,
             'modalities' => $this->modalities,
-            'objetive_exercise_id' => $this->objetive_exercise_id,
         ];
     }
 }

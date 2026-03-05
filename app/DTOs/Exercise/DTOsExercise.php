@@ -13,7 +13,6 @@ class DTOsExercise
         private readonly ?int $price = null,
         private readonly ?string $modalities = null,
         private readonly ?string $img = null,
-        private readonly ?int $objetive_exercise_id = null,
     ) {}
 
     public static function fromRequest(CreateExerciseRequest $request): self
@@ -25,7 +24,6 @@ class DTOsExercise
             price: $validated['price'],
             modalities: $validated['modalities'],
             img: $validated['img'] ?? null,
-            objetive_exercise_id: $validated['objetive_exercise_id'],
         );
     }
 
@@ -38,7 +36,6 @@ class DTOsExercise
             price: $validated['price'] ?? null,
             modalities: $validated['modalities'] ?? null,
             img: $validated['img'] ?? null,
-            objetive_exercise_id: $validated['objetive_exercise_id'] ?? null,
         );
     }
 
@@ -49,7 +46,6 @@ class DTOsExercise
             'price' => $this->price,
             'img' => $this->img,
             'modalities' => $this->modalities,
-            'objetive_exercise_id' => $this->objetive_exercise_id,
         ], fn($value) => !is_null($value));
     }
 
@@ -68,8 +64,5 @@ class DTOsExercise
         return $this->img;
     }
 
-    public function getObjetiveExerciseId(): ?int
-    {
-        return $this->objetive_exercise_id;
-    }
+
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\SchedulingExercise\SchedulingExerciseController;
 use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Api\UserMeasurement\UserMeasurementController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ExerciseObjetiveExercise\ExerciseObjetiveExerciseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -49,4 +50,15 @@ Route::get('/measurement', [UserMeasurementController::class, 'index']);       /
 Route::get('/measurement/{id}', [UserMeasurementController::class, 'show']);   // mostrar
 Route::put('/measurement/{id}', [UserMeasurementController::class, 'update']); // actualizar
 Route::delete('/measurement/{id}', [UserMeasurementController::class, 'destroy']);
+//pivote
+
+
+Route::prefix('exercise-objetives')->group(function () {
+    Route::post('/store', [ExerciseObjetiveExerciseController::class, 'store']);
+    Route::get('/index', [ExerciseObjetiveExerciseController::class, 'index']);
+    Route::get('/show', [ExerciseObjetiveExerciseController::class, 'show']);
+    Route::put('/update/{id}', [UserMeasurementController::class, 'update']);
+    Route::delete('/destroy', [ExerciseObjetiveExerciseController::class, 'destroy']);
+
+});
 });

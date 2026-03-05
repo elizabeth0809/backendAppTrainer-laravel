@@ -12,7 +12,10 @@ class ObjetiveExercise extends Model
         'name',
     ];
     public function exercises()
-    {
-        return $this->hasMany(Exercise::class, 'objetive_exercise_id');
-    }
+{
+    return $this->belongsToMany(
+        Exercise::class,
+        'exercise_objetive_exercises'
+    )->using(ExerciseObjetiveExercise::class);
+}
 }
