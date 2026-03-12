@@ -23,8 +23,8 @@ return new class extends Migration
               ->constrained('exercises')
               ->cascadeOnDelete();
         */
-        $table->foreignId('objetive_exercise_id')
-              ->constrained('objetive_exercises')
+        $table->foreignId('exercise_objetive_exercise_id')
+              ->constrained('exercise_objetive_exercises')
               ->cascadeOnDelete();
 
         $table->foreignId('user_measurement_id')

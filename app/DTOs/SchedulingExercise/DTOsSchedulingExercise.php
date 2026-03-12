@@ -12,7 +12,7 @@ class DTOsSchedulingExercise
         private readonly ?string $name = null,
         private readonly ?int $user_id,
         private readonly ?string $scheduled_date = null,
-        private readonly ?int $objetive_exercise_id = null,
+        private readonly ?int $exercise_objetive_exercise_id = null,
         private readonly ?int $user_measurement_id = null,
          private readonly ?int $opening_schedule_id = null,
     ) {}
@@ -25,7 +25,7 @@ class DTOsSchedulingExercise
             name: $validated['name'],
             user_id: Auth::id(),
             scheduled_date: $validated['scheduled_date'],
-            objetive_exercise_id: $validated['objetive_exercise_id'],
+            exercise_objetive_exercise_id: $validated['exercise_objetive_exercise_id'],
             user_measurement_id: $validated['user_measurement_id'],
             opening_schedule_id: $validated['opening_schedule_id'],
         );
@@ -39,7 +39,7 @@ class DTOsSchedulingExercise
             name: $validated['name'] ?? null,
              user_id: Auth::id(),
             scheduled_date: $validated['scheduled_date'],
-            objetive_exercise_id: $validated['objetive_exercise_id'],
+            exercise_objetive_exercise_id: $validated['exercise_objetive_exercise_id'],
             user_measurement_id: $validated['user_measurement_id'],
             opening_schedule_id: $validated['opening_schedule_id'],
         );
@@ -51,7 +51,7 @@ class DTOsSchedulingExercise
             'name' => $this->name,
             'user_id' => $this->user_id,
             'scheduled_date' => $this->scheduled_date,
-            'objetive_exercise_id' => $this->objetive_exercise_id,
+            'exercise_objetive_exercise_id' => $this->exercise_objetive_exercise_id,
             'user_measurement_id' => $this->user_measurement_id,
             'opening_schedule_id' => $this-> opening_schedule_id,
         ];
@@ -68,9 +68,9 @@ class DTOsSchedulingExercise
     {
         return $this->scheduled_date;
     }
-    public function getObjetiveExerciseId(): ?int
+    public function getExerciseObjetiveExerciseId(): ?int
     {
-        return $this->objetive_exercise_id;
+        return $this->exercise_objetive_exercise_id;
     }
     public function userMeasurementId(): ?int
     {

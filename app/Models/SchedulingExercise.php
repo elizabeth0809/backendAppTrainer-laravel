@@ -15,14 +15,14 @@ class SchedulingExercise extends Model
         'name',
         'user_id',
         'scheduled_date',
-        'objetive_exercise_id',
+        'exercise_objetive_exercise_id',
         'user_measurement_id',
         'opening_schedule_id',
     ];
 
-    public function objetiveExercise()
+    public function exerciseObjetiveExercise()
     {
-        return $this->belongsTo(ObjetiveExercise::class);
+        return $this->belongsTo(ExerciseObjetiveExercise::class);
     }
 
     public function userMeasurement()

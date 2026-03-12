@@ -12,9 +12,6 @@ class ObjetiveExerciseResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'exercises' => ExerciseResource::collection(
-                $this->whenLoaded('exercises')
-            ),
         ];
     }
 }

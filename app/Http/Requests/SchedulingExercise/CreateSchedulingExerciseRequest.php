@@ -28,7 +28,7 @@ class CreateSchedulingExerciseRequest extends FormRequest
         'name' => 'required|string|max:255',
         'user_id' => 'integer|exists:users,id',
         'scheduled_date' => 'required|date',
-        'objetive_exercise_id' => 'required|int|exists:objetive_exercises,id',
+        'exercise_objetive_exercise_id' => 'required|int|exists:exercise_objetive_exercises,id',
         'user_measurement_id' => 'required|int|exists:user_measurements,id',
         'opening_schedule_id' => 'required|int|exists:opening_schedules,id',
         ];
@@ -47,9 +47,9 @@ class CreateSchedulingExerciseRequest extends FormRequest
         //scheduled_date
         'scheduled_date.required' => 'La fecha es obligatorio.',
         // exercise_id
-        'objetive_exercise.required' => 'El objetivo es obligatorio.',
-        'objetive_exercise.integer' => 'El objetivo seleccionado no es válido.',
-        'objetive_exercise.exists'   => 'El objetivo seleccionado no existe.',
+        'exercise_objetive_exercise.required' => 'El objetivo es obligatorio.',
+        'exercise_objetive_exercise.integer' => 'El objetivo seleccionado no es válido.',
+        'exercise_objetive_exercise.exists'   => 'El objetivo seleccionado no existe.',
 
         // user_measurement_id
         'user_measurement_id.required' => 'Las mediciones del usuario son obligatorias.',
