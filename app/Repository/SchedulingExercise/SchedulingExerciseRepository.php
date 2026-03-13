@@ -12,7 +12,7 @@ class SchedulingExerciseRepository implements ISchedulingExerciseRepository
     {
         return SchedulingExercise::with([
             'exerciseObjetiveExercise.exercise',
-    'exerciseObjetiveExercise.objetiveExercise',
+            'exerciseObjetiveExercise.objetiveExercise',
             'userMeasurement',
             'openingSchedule',
             'user'

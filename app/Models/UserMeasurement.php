@@ -12,7 +12,6 @@ class UserMeasurement extends Model
    protected $fillable = [
         'user_id',
         'weight',
-        'age',
         'height',
         'gender',
         'level'
@@ -23,7 +22,7 @@ class UserMeasurement extends Model
     }
     public function isfemale()
     {
-        return $this->gender === 'male';
+        return $this->gender === 'female';
     }
     public function isOther()
     {

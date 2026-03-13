@@ -14,7 +14,6 @@ return new class extends Migration
           Schema::create('user_measurements', function (Blueprint $table) {
         $table->id();
         $table->float('weight');
-        $table->integer('age');
         $table->float('height');
         $table->enum('gender', ['male', 'female','other'])->default('male');
         $table->enum('level', ['beginner','intermediate', 'advanced'])->default('beginner');

@@ -13,10 +13,9 @@ class UserResource extends JsonResource
             'id'   => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            // NO agregamos:
-            // created_at
-            // updated_at
-            // email_verified_at
+            'user_measurement' => new UserMeasurementResource($this->whenLoaded('userMeasurement')),
+            'profile' => new ProfileResource($this->whenLoaded('profile')),
+
         ];
     }
 }

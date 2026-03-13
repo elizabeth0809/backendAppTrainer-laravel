@@ -12,6 +12,8 @@ use App\Interfaces\ObjetiveExercise\IObjetiveExerciseRepository;
 use App\Interfaces\ObjetiveExercise\IObjetiveExerciseServices;
 use App\Interfaces\OpeningSchedule\IOpeningScheduleRepository;
 use App\Interfaces\OpeningSchedule\IOpeningScheduleServices;
+use App\Interfaces\Profile\IProfileRepository;
+use App\Interfaces\Profile\IProfileServices;
 use App\Interfaces\SchedulingExercise\ISchedulingExerciseRepository;
 use App\Interfaces\SchedulingExercise\ISchedulingExerciseServices;
 use App\Interfaces\Subscription\ISubscriptionRepository;
@@ -25,6 +27,7 @@ use App\Repository\Exercise\ExerciseRepository;
 use App\Repository\ExerciseObjetiveExercise\ExerciseObjetiveExerciseRepository;
 use App\Repository\ObjetiveExercise\ObjetiveExerciseRepository;
 use App\Repository\OpeningSchedule\OpeningScheduleRepository;
+use App\Repository\Profile\ProfileRepository;
 use App\Repository\SchedulingExercise\SchedulingExerciseRepository;
 use App\Repository\Subscription\SubscriptionRepository;
 use App\Repository\User\UserRepository;
@@ -34,6 +37,7 @@ use App\Services\Exercise\ExerciseServices;
 use App\Services\ExerciseObjetiveExercise\ExerciseObjetiveExerciseServices;
 use App\Services\ObjetiveExercise\ObjetiveExerciseServices;
 use App\Services\OpeningSchedule\OpeningScheduleServices;
+use App\Services\Profile\ProfileServices;
 use App\Services\SchedulingExercise\SchedulingExerciseServices;
 use App\Services\Subscription\SubscriptionServices;
 use App\Services\User\UserServices;
@@ -47,6 +51,8 @@ class RepositoriesServicesProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->bind(IProfileRepository::class, ProfileRepository::class);
+        $this->app->bind(IProfileServices::class, ProfileServices::class);
         $this->app->bind(IExerciseObjetiveExerciseRepository::class, ExerciseObjetiveExerciseRepository::class);
         $this->app->bind(IExerciseObjetiveExerciseService::class, ExerciseObjetiveExerciseServices::class);
         $this->app->bind(IObjetiveExerciseRepository::class, ObjetiveExerciseRepository::class);

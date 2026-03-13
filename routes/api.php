@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Api\UserMeasurement\UserMeasurementController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ExerciseObjetiveExercise\ExerciseObjetiveExerciseController;
+use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,10 @@ Route::delete('/opening/{id}', [OpeningScheduleController::class, 'destroy']);
 //user measurement
 
 Route::middleware(['auth:api'])->group(function () {
+    //profile
+    Route::post('/profile', [ProfileController::class, 'store']);
+    Route::get('/profile', [ProfileController::class, 'index']);
+    Route::put('/profile/{id}', [ProfileController::class, 'update']);
 //objetvos
 Route::post('/objetive', [ObjetiveExerciseController::class, 'store']);
 Route::get('/objetive', [ObjetiveExerciseController::class, 'index']);       // listar

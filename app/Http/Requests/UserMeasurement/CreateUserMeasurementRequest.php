@@ -27,7 +27,6 @@ class CreateUserMeasurementRequest extends FormRequest
         return [
             'user_id' => 'integer|exists:users,id',
             'weight' => 'required|numeric|min:0',
-            'age' => 'required|integer|min:0',
             'height' => 'required|numeric|min:0',
             'gender' => 'required|in:male,female,other',
             'level' => 'required|in:beginner,intermediate,advanced',
@@ -43,18 +42,11 @@ public function messages(): array
         'weight.required' => 'El peso es obligatorio.',
         'weight.numeric' => 'El peso debe ser un número válido.',
         'weight.min' => 'El peso no puede ser negativo.',
-
-        'age.required' => 'La edad es obligatoria.',
-        'age.integer' => 'La edad debe ser un número entero.',
-        'age.min' => 'La edad no puede ser negativa.',
-
         'height.required' => 'La altura es obligatoria.',
         'height.numeric' => 'La altura debe ser un número válido.',
         'height.min' => 'La altura no puede ser negativa.',
-
         'gender.required' => 'El género es obligatorio.',
         'gender.in' => 'El género debe ser masculino, femenino u otro.',
-
         'level.required' => 'El nivel es obligatorio.',
         'level.in' => 'El nivel debe ser principiante, intermedio o avanzado.',
     ];

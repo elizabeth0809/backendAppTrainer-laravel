@@ -12,7 +12,6 @@ class UserMeasurementResource extends JsonResource
         return [
             'id' => $this->id,
             'weight' => $this->weight,
-            'age' => $this->age,
             'height' => $this->height,
             'gender' => $this->gender,
             'level' => $this->level,

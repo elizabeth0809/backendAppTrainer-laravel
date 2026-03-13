@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Requests\UserMeasurement;
+namespace App\Http\Requests\Profile;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Auth;
 
-class UpdateUserMeasurementRequest extends FormRequest
+class CreateProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return Auth::check();
+        return Auth::check(); // Modify this according to your authorization logic
     }
 
     /**
@@ -25,25 +25,24 @@ class UpdateUserMeasurementRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'sometimes|integer|exists:users,id',
-            'weight' => 'sometimes|numeric|min:0',
-            'height' => 'sometimes|numeric|min:0',
-            'gender' => 'sometimes|in:male,female,other',
-            'level' => 'sometimes|in:beginner,intermediate,advanced',
+        'user_id' => 'integer|exists:users,id',
+        'phone' => 'required|string|max:25',
+        'birthdate' => 'required|date',
         ];
     }
-    public function messages(): array
-    {
+public function messages(): array
+{
     return [
+        //id
+        'user_id.required' => 'El usuario es obligatorio.',
         'user_id.integer' => 'El user_id debe ser un número entero.',
         'user_id.exists' => 'El usuario no existe.',
-        'weight.required' => 'El peso es obligatorio.',
-        'weight.numeric' => 'El peso debe ser un número válido.',
-        'weight.min' => 'El peso no puede ser negativo.',
-        'height.numeric' => 'La altura debe ser un número válido.',
-        'height.min' => 'La altura no puede ser negativa.',
-        'gender.in' => 'El género debe ser masculino, femenino u otro.',
-        'level.in' => 'El nivel debe ser principiante, intermedio o avanzado.',
+        // name
+        'phone.required' => 'El telefono es obligatorio.',
+        'phone.string' => 'El telefono debe ser un texto válido.',
+        'phone.max' => 'El telefono no debe superar los 25 caracteres.',
+        //birthdate
+        'birthdate.required' => 'La fecha es obligatorio.',
     ];
 }
     /**

@@ -42,12 +42,11 @@ class User extends Authenticatable
     {
         return $this->role === 'customer';
     }
-
-    public function subscription()
+    public function profile()
 {
-    return $this->hasOne(Subscription::class);
+    return $this->hasOne(Profile::class);
 }
-    public function measurement()
+    public function userMeasurement()
     {
         return $this->hasOne(UserMeasurement::class);
     }

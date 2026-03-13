@@ -11,7 +11,6 @@ class DTOsUserMeasurement
     public function __construct(
     private readonly ?int $user_id,
     private readonly ?float $weight = null,
-    private readonly ?int $age = null,
     private readonly ?float $height = null,
     private readonly ?string $gender = null,
     private readonly ?string $level = null,
@@ -24,7 +23,6 @@ class DTOsUserMeasurement
         return new self(
          user_id: Auth::id(),
         weight: $validated['weight'],
-        age: $validated['age'],
         height: $validated['height'],
         gender: $validated['gender'],
         level: $validated['level'],
@@ -38,7 +36,6 @@ class DTOsUserMeasurement
         return new self(
              user_id: Auth::id(),
             weight: $validated['weight'] ?? null,
-            age: $validated['age'] ?? null,
             height: $validated['height'],
             gender: $validated['gender'],
             level: $validated['level'],
@@ -50,7 +47,6 @@ class DTOsUserMeasurement
         return [
         'user_id' => $this->user_id,
         'weight' => $this->weight,
-        'age' => $this->age,
         'height' => $this->height,
         'gender' => $this->gender,
         'level' => $this->level,
@@ -64,11 +60,6 @@ public function getUserId(): int
 public function getWeight(): ?float
 {
     return $this->weight;
-}
-
-public function getAge(): ?int
-{
-    return $this->age;
 }
 
 public function getHeight(): ?float
