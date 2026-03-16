@@ -25,7 +25,6 @@ class UpdateUserMeasurementRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'sometimes|integer|exists:users,id',
             'weight' => 'sometimes|numeric|min:0',
             'height' => 'sometimes|numeric|min:0',
             'gender' => 'sometimes|in:male,female,other',
@@ -35,8 +34,6 @@ class UpdateUserMeasurementRequest extends FormRequest
     public function messages(): array
     {
     return [
-        'user_id.integer' => 'El user_id debe ser un número entero.',
-        'user_id.exists' => 'El usuario no existe.',
         'weight.required' => 'El peso es obligatorio.',
         'weight.numeric' => 'El peso debe ser un número válido.',
         'weight.min' => 'El peso no puede ser negativo.',

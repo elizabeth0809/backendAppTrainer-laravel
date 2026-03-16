@@ -53,7 +53,7 @@ Route::delete('/scheduling/{id}', [SchedulingExerciseController::class, 'destroy
 Route::post('/measurement', [UserMeasurementController::class, 'store']);
 Route::get('/measurement', [UserMeasurementController::class, 'index']);       // listar
 Route::get('/measurement/{id}', [UserMeasurementController::class, 'show']);   // mostrar
-Route::put('/measurement/{id}', [UserMeasurementController::class, 'update']); // actualizar
+Route::put('/measurement-profile', [UserMeasurementController::class, 'update']); // actualizar
 Route::delete('/measurement/{id}', [UserMeasurementController::class, 'destroy']);
 //pivote
 

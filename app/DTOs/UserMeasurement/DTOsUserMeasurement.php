@@ -21,7 +21,7 @@ class DTOsUserMeasurement
         $validated = $request->validated();
 
         return new self(
-         user_id: Auth::id(),
+        user_id: Auth::user()->id,
         weight: $validated['weight'],
         height: $validated['height'],
         gender: $validated['gender'],
@@ -34,7 +34,7 @@ class DTOsUserMeasurement
         $validated = $request->validated();
 
         return new self(
-             user_id: Auth::id(),
+            user_id: Auth::user()->id,
             weight: $validated['weight'] ?? null,
             height: $validated['height'],
             gender: $validated['gender'],

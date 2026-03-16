@@ -9,15 +9,15 @@ use App\Http\Requests\UserMeasurement\UpdateUserMeasurementRequest;
 use App\Interfaces\UserMeasurement\IUserMeasurementServices;
 use Illuminate\Http\Request;
 
-class UserMeasurementController extends Controller 
+class UserMeasurementController extends Controller
 {
     protected IUserMeasurementServices $UserMeasurementServices;
-    
+
     public function __construct(IUserMeasurementServices $UserMeasurementServicesInterface)
     {
         $this->UserMeasurementServices = $UserMeasurementServicesInterface;
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -31,7 +31,7 @@ class UserMeasurementController extends Controller
         }
         return response()->json($result['data'], 200);
     }
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -45,7 +45,7 @@ class UserMeasurementController extends Controller
         }
         return response()->json($result['data'], 201);
     }
-    
+
     /**
      * Display the specified resource.
      */
@@ -59,13 +59,13 @@ class UserMeasurementController extends Controller
         }
         return response()->json($result['data'], 200);
     }
-    
+
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserMeasurementRequest $request, string $id)
+    public function update(UpdateUserMeasurementRequest $request)
     {
-        $result = $this->UserMeasurementServices->updateUserMeasurement(DTOsUserMeasurement::fromUpdateRequest($request), $id);
+        $result = $this->UserMeasurementServices->updateUserMeasurement(DTOsUserMeasurement::fromUpdateRequest($request));
         if (!$result['success']) {
             return response()->json([
                 'error' => $result['message']
@@ -73,7 +73,7 @@ class UserMeasurementController extends Controller
         }
         return response()->json($result['data'], 200);
     }
-    
+
     /**
      * Remove the specified resource from storage.
      */

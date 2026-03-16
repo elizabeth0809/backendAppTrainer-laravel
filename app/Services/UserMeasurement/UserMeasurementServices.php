@@ -7,15 +7,15 @@ use App\Interfaces\UserMeasurement\IUserMeasurementServices;
 use App\Interfaces\UserMeasurement\IUserMeasurementRepository;
 use Exception;
 
-class UserMeasurementServices implements IUserMeasurementServices 
+class UserMeasurementServices implements IUserMeasurementServices
 {
     protected IUserMeasurementRepository $UserMeasurementRepository;
-    
+
     public function __construct(IUserMeasurementRepository $UserMeasurementRepositoryInterface)
     {
         $this->UserMeasurementRepository = $UserMeasurementRepositoryInterface;
     }
-    
+
     public function getAllUserMeasurements()
     {
         try {
@@ -31,7 +31,7 @@ class UserMeasurementServices implements IUserMeasurementServices
             ];
         }
     }
-    
+
     public function getUserMeasurementById($id)
     {
         try {
@@ -47,7 +47,7 @@ class UserMeasurementServices implements IUserMeasurementServices
             ];
         }
     }
-    
+
     public function createUserMeasurement(DTOsUserMeasurement $data)
     {
         try {
@@ -63,12 +63,13 @@ class UserMeasurementServices implements IUserMeasurementServices
             ];
         }
     }
-    
-    public function updateUserMeasurement(DTOsUserMeasurement $data, $id)
+
+    public function updateUserMeasurement(DTOsUserMeasurement $dto)
     {
         try {
-            $UserMeasurement = $this->UserMeasurementRepository->getUserMeasurementById($id);
-            $results = $this->UserMeasurementRepository->updateUserMeasurement($data, $UserMeasurement);
+            $UserMeasurement = $this->UserMeasurementRepository
+    ->getUserMeasurementById($dto->getUserId());
+            $results = $this->UserMeasurementRepository->updateUserMeasurement($dto, $UserMeasurement);
             return [
                 'success' => true,
                 'data' => $results
@@ -80,7 +81,7 @@ class UserMeasurementServices implements IUserMeasurementServices
             ];
         }
     }
-    
+
     public function deleteUserMeasurement($id)
     {
         try {
