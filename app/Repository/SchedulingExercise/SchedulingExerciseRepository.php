@@ -5,7 +5,7 @@ namespace App\Repository\SchedulingExercise;
 use App\DTOs\SchedulingExercise\DTOsSchedulingExercise;
 use App\Interfaces\SchedulingExercise\ISchedulingExerciseRepository;
 use App\Models\SchedulingExercise;
-
+use Illuminate\Support\Collection;
 class SchedulingExerciseRepository implements ISchedulingExerciseRepository
 {
     public function getAllSchedulingExercises()
@@ -18,7 +18,17 @@ class SchedulingExerciseRepository implements ISchedulingExerciseRepository
             'user'
         ])->get();
     }
-
+    public function getSchedulingByUserId($userId): Collection
+{
+    return SchedulingExercise::with([
+        'exerciseObjetiveExercise.exercise',
+        'exerciseObjetiveExercise.objetiveExercise',
+        'userMeasurement',
+        'openingSchedule'
+    ])
+    ->where('user_id', $userId)
+    ->get();
+}
 
     public function getSchedulingExerciseById($id): SchedulingExercise
     {

@@ -36,7 +36,11 @@ Route::middleware(['auth:api'])->group(function () {
     //profile
     Route::post('/profile', [ProfileController::class, 'store']);
     Route::get('/profile', [ProfileController::class, 'index']);
-    Route::put('/profile/{id}', [ProfileController::class, 'update']);
+    Route::put('/profile-user', [ProfileController::class, 'update']);
+     Route::get('/profile-me', [AuthController::class, 'me']);
+    //logout
+    Route::post('/logout', [AuthController::class, 'logout']);
+
 //objetvos
 Route::post('/objetive', [ObjetiveExerciseController::class, 'store']);
 Route::get('/objetive', [ObjetiveExerciseController::class, 'index']);       // listar
@@ -49,6 +53,8 @@ Route::get('/scheduling', [SchedulingExerciseController::class, 'index']);      
 Route::get('/scheduling/{id}', [SchedulingExerciseController::class, 'show']);   // mostrar
 Route::put('/scheduling/{id}', [SchedulingExerciseController::class, 'update']); // actualizar
 Route::delete('/scheduling/{id}', [SchedulingExerciseController::class, 'destroy']);
+//mys shedulings
+Route::get('/my-scheduling', [SchedulingExerciseController::class, 'myScheduling']);
 //measurement
 Route::post('/measurement', [UserMeasurementController::class, 'store']);
 Route::get('/measurement', [UserMeasurementController::class, 'index']);       // listar

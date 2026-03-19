@@ -74,7 +74,7 @@ class AuthRepository implements IAuthRepository
         $token = $user->token();
 
         if ($token) {
-           // $token->revoke();
+            $token->revoke();
             return true;
         }
 

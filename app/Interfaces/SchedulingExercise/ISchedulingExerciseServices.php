@@ -4,9 +4,10 @@ namespace App\Interfaces\SchedulingExercise;
 
 use App\DTOs\SchedulingExercise\DTOsSchedulingExercise;
 
-interface ISchedulingExerciseServices 
+interface ISchedulingExerciseServices
 {
     public function getAllSchedulingExercises();
+    public function getSchedulingByUserId(int $userId): array;
     public function getSchedulingExerciseById($id);
     public function createSchedulingExercise(DTOsSchedulingExercise $data);
     public function updateSchedulingExercise(DTOsSchedulingExercise $data, $id);

@@ -63,16 +63,20 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProfileRequest $request, string $id)
-    {
-        $result = $this->ProfileServices->updateProfile(DTOsProfile::fromUpdateRequest($request), $id);
-        if (!$result['success']) {
-            return response()->json([
-                'error' => $result['message']
-            ], 422);
-        }
-        return response()->json($result['data'], 200);
+    public function update(UpdateProfileRequest $request)
+{
+    $result = $this->ProfileServices->updateProfile(
+        DTOsProfile::fromUpdateRequest($request)
+    );
+
+    if (!$result['success']) {
+        return response()->json([
+            'error' => $result['message']
+        ], 422);
     }
+
+    return response()->json($result['data'], 200);
+}
 
     /**
      * Remove the specified resource from storage.

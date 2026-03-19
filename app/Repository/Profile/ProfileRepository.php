@@ -14,13 +14,15 @@ class ProfileRepository implements IProfileRepository
         return $Profiles;
     }
 
-    public function getProfileById($id): Profile
+    public function getProfileById($userId): Profile
     {
-        $Profile = Profile::where('id', $id)->first();
-        if (!$Profile) {
-            throw new \Exception("No results found for Profile with ID {$id}");
-        }
-        return $Profile;
+    $Profile = Profile::where('user_id', $userId)->first();
+
+    if (!$Profile) {
+        throw new \Exception("No results found for Profile for user {$userId}");
+    }
+
+    return $Profile;
     }
 
     public function createProfile(DTOsProfile $data): Profile

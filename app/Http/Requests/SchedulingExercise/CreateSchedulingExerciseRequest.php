@@ -29,7 +29,6 @@ class CreateSchedulingExerciseRequest extends FormRequest
         'user_id' => 'integer|exists:users,id',
         'scheduled_date' => 'required|date',
         'exercise_objetive_exercise_id' => 'required|int|exists:exercise_objetive_exercises,id',
-        'user_measurement_id' => 'required|int|exists:user_measurements,id',
         'opening_schedule_id' => 'required|int|exists:opening_schedules,id',
         ];
     }
@@ -50,12 +49,6 @@ class CreateSchedulingExerciseRequest extends FormRequest
         'exercise_objetive_exercise.required' => 'El objetivo es obligatorio.',
         'exercise_objetive_exercise.integer' => 'El objetivo seleccionado no es válido.',
         'exercise_objetive_exercise.exists'   => 'El objetivo seleccionado no existe.',
-
-        // user_measurement_id
-        'user_measurement_id.required' => 'Las mediciones del usuario son obligatorias.',
-        'user_measurement_id.integer' => 'Las mediciones del usuario no son válidas.',
-        'user_measurement_id.exists'   => 'las mediciones seleccionadas no existe.',
-
         // opening_schedule_id
         'opening_schedule_id.required' => 'El horario de apertura es obligatorio.',
         'opening_schedule_id.integer' => 'El horario de apertura no es válido.',

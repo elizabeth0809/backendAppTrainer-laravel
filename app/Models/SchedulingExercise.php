@@ -16,7 +16,6 @@ class SchedulingExercise extends Model
         'user_id',
         'scheduled_date',
         'exercise_objetive_exercise_id',
-        'user_measurement_id',
         'opening_schedule_id',
     ];
 

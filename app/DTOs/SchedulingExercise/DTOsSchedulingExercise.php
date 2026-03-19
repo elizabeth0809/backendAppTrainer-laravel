@@ -13,7 +13,6 @@ class DTOsSchedulingExercise
         private readonly ?int $user_id,
         private readonly ?string $scheduled_date = null,
         private readonly ?int $exercise_objetive_exercise_id = null,
-        private readonly ?int $user_measurement_id = null,
          private readonly ?int $opening_schedule_id = null,
     ) {}
 
@@ -26,7 +25,6 @@ class DTOsSchedulingExercise
             user_id: Auth::id(),
             scheduled_date: $validated['scheduled_date'],
             exercise_objetive_exercise_id: $validated['exercise_objetive_exercise_id'],
-            user_measurement_id: $validated['user_measurement_id'],
             opening_schedule_id: $validated['opening_schedule_id'],
         );
     }
@@ -40,7 +38,6 @@ class DTOsSchedulingExercise
              user_id: Auth::id(),
             scheduled_date: $validated['scheduled_date'],
             exercise_objetive_exercise_id: $validated['exercise_objetive_exercise_id'],
-            user_measurement_id: $validated['user_measurement_id'],
             opening_schedule_id: $validated['opening_schedule_id'],
         );
     }
@@ -52,7 +49,6 @@ class DTOsSchedulingExercise
             'user_id' => $this->user_id,
             'scheduled_date' => $this->scheduled_date,
             'exercise_objetive_exercise_id' => $this->exercise_objetive_exercise_id,
-            'user_measurement_id' => $this->user_measurement_id,
             'opening_schedule_id' => $this-> opening_schedule_id,
         ];
     }
@@ -71,10 +67,6 @@ class DTOsSchedulingExercise
     public function getExerciseObjetiveExerciseId(): ?int
     {
         return $this->exercise_objetive_exercise_id;
-    }
-    public function userMeasurementId(): ?int
-    {
-        return $this->user_measurement_id;
     }
     public function getOpeningScheduleId(): ?int
     {

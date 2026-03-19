@@ -5,17 +5,19 @@ namespace App\Services\SchedulingExercise;
 use App\DTOs\SchedulingExercise\DTOsSchedulingExercise;
 use App\Interfaces\SchedulingExercise\ISchedulingExerciseServices;
 use App\Interfaces\SchedulingExercise\ISchedulingExerciseRepository;
+use App\Models\SchedulingExercise;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
-class SchedulingExerciseServices implements ISchedulingExerciseServices 
+class SchedulingExerciseServices implements ISchedulingExerciseServices
 {
     protected ISchedulingExerciseRepository $SchedulingExerciseRepository;
-    
+
     public function __construct(ISchedulingExerciseRepository $SchedulingExerciseRepositoryInterface)
     {
         $this->SchedulingExerciseRepository = $SchedulingExerciseRepositoryInterface;
     }
-    
+
     public function getAllSchedulingExercises()
     {
         try {
@@ -31,7 +33,22 @@ class SchedulingExerciseServices implements ISchedulingExerciseServices
             ];
         }
     }
-    
+    public function getSchedulingByUserId($userId): array
+{
+    $userId = Auth::id();
+    try {
+            $results = $this->SchedulingExerciseRepository->getSchedulingByUserId($userId);
+            return [
+                'success' => true,
+                'data' => $results
+            ];
+        } catch (Exception $exception) {
+            return [
+                'success' => false,
+                'message' => $exception->getMessage()
+            ];
+        }
+}
     public function getSchedulingExerciseById($id)
     {
         try {
@@ -47,7 +64,7 @@ class SchedulingExerciseServices implements ISchedulingExerciseServices
             ];
         }
     }
-    
+
     public function createSchedulingExercise(DTOsSchedulingExercise $data)
     {
         try {
@@ -63,7 +80,7 @@ class SchedulingExerciseServices implements ISchedulingExerciseServices
             ];
         }
     }
-    
+
     public function updateSchedulingExercise(DTOsSchedulingExercise $data, $id)
     {
         try {
@@ -80,7 +97,7 @@ class SchedulingExerciseServices implements ISchedulingExerciseServices
             ];
         }
     }
-    
+
     public function deleteSchedulingExercise($id)
     {
         try {

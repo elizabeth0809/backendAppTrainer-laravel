@@ -9,6 +9,7 @@ use App\Http\Requests\SchedulingExercise\UpdateSchedulingExerciseRequest;
 use App\Interfaces\SchedulingExercise\ISchedulingExerciseServices;
 use Illuminate\Http\Request;
 use App\Http\Resources\SchedulingExerciseResource;
+use Illuminate\Support\Facades\Auth;
 
 class SchedulingExerciseController extends Controller
 {
@@ -34,7 +35,20 @@ class SchedulingExerciseController extends Controller
 
     return SchedulingExerciseResource::collection($result['data']);
 }
+   public function myScheduling()
+{
+    $user = Auth::id();
 
+    if (!$user) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Usuario no autenticado'
+        ], 401);
+    }
+
+    $result = $this->SchedulingExerciseServices->getSchedulingByUserId($user);
+    return SchedulingExerciseResource::collection($result['data']);
+}
 
     /**
      * Store a newly created resource in storage.

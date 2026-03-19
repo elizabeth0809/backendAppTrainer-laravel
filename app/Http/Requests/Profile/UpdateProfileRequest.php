@@ -7,32 +7,19 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Auth;
 
-class UpdateProfileRequest extends FormRequest 
+class UpdateProfileRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return Auth::check(); // Modify this according to your authorization logic
     }
-    
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            // Define your validation rules here
-            // 'field' => 'required|string|max:255',
+        'phone' => 'required|string|max:25',
+        'birthdate' => 'required|date',
         ];
     }
-    
-    /**
-     * Handle a failed validation attempt.
-     */
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json(
@@ -43,7 +30,7 @@ class UpdateProfileRequest extends FormRequest
             422
         ));
     }
-    
+
     /**
      * Handle a failed authorization attempt.
      */

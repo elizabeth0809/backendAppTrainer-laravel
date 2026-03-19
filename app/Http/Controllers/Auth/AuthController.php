@@ -20,6 +20,27 @@ class AuthController extends Controller
     {
         $this->AuthServices = $AuthServicesInterface;
     }
+    public function me(Request $request)
+    {
+    try {
+        $user = $request->user()->load([
+            'profile',
+            'userMeasurement'
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'data' => $user
+        ], 200);
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Error al obtener el perfil',
+            'error' => $e->getMessage()
+        ], 500);
+    }
+    }
     public function index(RegisterRequest $request)
     {
         //$filters = DTOsUserFilter::fromRequest($request);

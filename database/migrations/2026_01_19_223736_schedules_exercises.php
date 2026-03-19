@@ -26,11 +26,6 @@ return new class extends Migration
         $table->foreignId('exercise_objetive_exercise_id')
               ->constrained('exercise_objetive_exercises')
               ->cascadeOnDelete();
-
-        $table->foreignId('user_measurement_id')
-              ->constrained('user_measurements')
-              ->cascadeOnDelete();
-
         $table->foreignId('opening_schedule_id')
               ->constrained('opening_schedules')
               ->cascadeOnDelete();
